@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>解碼結果</title>
+</head>
+<body>
+  <h1>還原後圖片</h1>
+  <img src="data:image/png;base64,{{ image_data }}" alt="還原圖片" width="600" /><br>
+  <h2>還原後直方圖</h2>
+  <img src="{{ hist_path }}" alt="還原直方圖"/>
+  <h2>還原出的文字：</h2>
+  <p>{{ secret_text }}</p>
+  <br><a href="/">返回首頁</a>
+</body>
+</html>
