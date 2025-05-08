@@ -3,12 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>嵌入結果</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>嵌入後圖片</h1>
-  <img src="data:image/png;base64,{{ image_data }}" alt="嵌入圖片" width="600" /><br>
-  <h2>直方圖</h2>
-  <img src="{{ hist_path }}" alt="嵌入直方圖" width="600" />
-  <br><a href="/">返回首頁</a>
+  <div class="area">
+    <div class="imgArea">
+      <h1>嵌入後圖片</h1>
+      <hr>
+      <img src="data:image/png;base64,{{ image_data }}" alt="嵌入圖片" />
+    </div>
+    <div class="histArea">
+      <h1>直方圖</h1>
+      <hr>
+      <img src="{{ hist_path }}" alt="嵌入直方圖" />
+    </div>
+  </div>
+  <div class="link">
+    <a href="/">返回首頁</a>
+  </div>
 </body>
 </html>

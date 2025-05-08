@@ -3,14 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>解碼結果</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>還原後圖片</h1>
-  <img src="data:image/png;base64,{{ image_data }}" alt="還原圖片" width="600" /><br>
-  <h2>還原後直方圖</h2>
-  <img src="{{ hist_path }}" alt="還原直方圖"/>
-  <h2>還原出的文字：</h2>
-  <p>{{ secret_text }}</p>
-  <br><a href="/">返回首頁</a>
+  <div class="area">
+    <div class="textArea">
+      <h1>還原出的文字</h1>
+      <hr>
+      <p class="p-style">{{ secret_text }}</p>
+    </div>
+    <div class="imgArea">
+      <h1>還原後圖片</h1>
+      <hr>
+      <img src="data:image/png;base64,{{ image_data }}" alt="還原圖片" />
+    </div>
+    <div class="histArea">
+      <h1>還原後直方圖</h1>
+      <hr>
+      <img src="{{ hist_path }}" alt="還原直方圖"/>
+    </div>
+  </div>
+  <div class="link">
+    <a href="/">返回首頁</a>
+  </div>
 </body>
 </html>
