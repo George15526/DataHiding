@@ -6,20 +6,25 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="area">
-    <div class="imgArea">
-      <h1>嵌入後圖片</h1>
-      <hr>
-      <img src="data:image/png;base64,{{ image_data }}" alt="嵌入圖片" />
+  <div class="container">
+    <div class="peak">
+      <h1>P值為 {{ peak }}</h1>
     </div>
-    <div class="histArea">
-      <h1>直方圖</h1>
-      <hr>
-      <img src="{{ hist_path }}" alt="嵌入直方圖" />
+    <div class="area">
+      <div class="imgArea">
+        <h2>嵌入後圖片</h2>
+        <hr>
+        <img src="data:image/png;base64,{{ image_data }}" alt="嵌入圖片" />
+      </div>
+      <div class="histArea">
+        <h2>直方圖</h2>
+        <hr>
+        <img src="{{ hist_path }}" alt="嵌入直方圖" />
+      </div>
     </div>
-  </div>
-  <div class="link">
-    <a href="/">返回首頁</a>
+    <div class="link">
+      <a href="/">返回首頁</a>
+    </div>
   </div>
 </body>
 </html>

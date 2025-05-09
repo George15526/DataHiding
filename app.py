@@ -30,6 +30,12 @@ def index():
 def embed():
   image_file = request.files['image']
   secret_text = request.form['secret_text']
+  peak = request.form['peak']
+  if peak == '':
+    peak = None
+  else:
+    peak = int(peak)
+  
   if image_file.filename == '':
     return redirect(url_for('index'))
   
@@ -42,7 +48,11 @@ def embed():
   
   msg_bits = text_to_bits(secret_text)
   
-  embeded_img, hist_path = embeded_data(original_img, msg_bits)
+  peak, embeded_img, hist_path = embeded_data(
+    img=original_img,
+    msg_bits=msg_bits,
+    peak=peak
+  )
   print(hist_path)
   embeded_base64 = img_to_base64(embeded_img)
   
@@ -55,6 +65,7 @@ def embed():
   
   return render_template(
     'embed_result.html',
+    peak=peak,
     image_data=embeded_base64,
     hist_path=hist_path
   )
@@ -62,8 +73,15 @@ def embed():
 @app.route('/decode', methods=['POST'])
 def decode():
   image_file = request.files['image']
+  peak = request.form['peak']
+  
   if image_file.filename == '':
     return redirect(url_for('index'))
+  
+  if peak == '':
+    peak = None
+  else:
+    peak = int(peak)
   
   filename = image_file.filename
   path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -78,7 +96,11 @@ def decode():
   
   msg_len = record['secret_text_len'] * 8
   
-  decoded_img, secret_text, hist_path = decode_data(embedded_img, msg_len=msg_len)
+  decoded_img, secret_text, hist_path = decode_data(
+    embedded_img,
+    msg_len=msg_len,
+    peak=peak
+  )
   
   decoded_base64 = img_to_base64(decoded_img)
   

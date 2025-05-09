@@ -6,7 +6,7 @@ import os
 from utils.bit_text_switch import bits_to_text
 from utils.plot_factor import plot_factor
 
-def decode_data(img: Image.Image, msg_len: int=None, peak: int=None) -> tuple[str, str]:
+def decode_data(img: Image.Image, msg_len: int, peak: int) -> tuple[str, str]:
   img_np = np.array(img, dtype=np.uint8)
   print(img_np)
   
@@ -16,7 +16,8 @@ def decode_data(img: Image.Image, msg_len: int=None, peak: int=None) -> tuple[st
   hist, _ = np.histogram(flat, bins=256, range=(0, 256))
   print(hist)
   
-  peak = np.argmax(hist)
+  if peak is None:
+    peak = np.argmax(hist)
   print(peak)
   
   extracted_bits = []

@@ -7,7 +7,7 @@ from utils.plot_factor import plot_factor
 
 matplotlib.use('Agg')
 
-def embeded_data(img: Image.Image, msg_bits: str) -> tuple[Image.Image, str]:
+def embeded_data(img: Image.Image, msg_bits: str, peak: int) -> tuple[str, Image.Image, str]:
   img_np = np.array(img)
   print(img_np)
   
@@ -20,7 +20,8 @@ def embeded_data(img: Image.Image, msg_bits: str) -> tuple[Image.Image, str]:
   hist, _ = np.histogram(flat, bins=256, range=(0, 256))
   print('hist:\n', hist)
   
-  peak = np.argmax(hist)
+  if peak is None:
+    peak = np.argmax(hist)
   print(peak)
   
   hist_left = hist[0: peak]
@@ -77,4 +78,4 @@ def embeded_data(img: Image.Image, msg_bits: str) -> tuple[Image.Image, str]:
     
   plot_factor(embedded, new_hist_path)
   
-  return new_img, new_hist_path
+  return peak, new_img, new_hist_path
