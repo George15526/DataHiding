@@ -16,13 +16,20 @@
     
 * Step 2 -- 利用編譯器打開專案並在terminal中輸入以下指令:
   * 安裝pipenv虛擬環境與相關套件(此指令會根據Pipfile來安裝相關依賴，且不影響電腦環境):<br>
-    `pipenv install`
+    ```
+    pipenv install
+    ```
 
   * 安裝完成後，進入pipenv虛擬環境:<br>
-    `pipenv shell`
+    ```
+    pipenv shell
+    ```
 
   * 運行專案:<br>
-    `py app.py`
+    ```
+    py app.py
+    ```
+    
   > 在運行前，要注意是否將`port 8001`空下來，否則會跑不了哦
   
 * Step 3:
