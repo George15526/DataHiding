@@ -5,16 +5,13 @@ from utils.histogram_embed import embeded_data
 import os
 import io
 import base64
-from utils.bit_text_switch import bits_to_text, text_to_bits
+from utils.bit_text_switch import text_to_bits
 from utils.histogram_decode import decode_data
-from utils.save_embed_record import save_embed_record
-from utils.find_record import find_record_by_image_data
 
 app = Flask(__name__, static_folder='static/')
 
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-os.makedirs(os.path.join('static', 'data'), exist_ok=True)
 os.makedirs(os.path.join('static', 'img'), exist_ok=True)
 
 def img_to_base64(img):
@@ -84,11 +81,6 @@ def decode():
   image_file.save(path)
   
   embedded_img = Image.open(path).convert('L')
-  
-  record = find_record_by_image_data(
-    target_image_data=img_to_base64(embedded_img),
-    json_path='static/data/data.json'
-  )
   
   decoded_img, secret_text, hist_path = decode_data(
     embedded_img,
