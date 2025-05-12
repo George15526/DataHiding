@@ -42,9 +42,18 @@ def embeded_data(img: Image.Image, msg_bits: str, peak: int) -> tuple[str, Image
     
   print(embedded)
     
-  half_len = len(msg_bits) // 2
-  msg_left = msg_bits[:half_len]
-  msg_right = msg_bits[half_len:]
+  header_bits = msg_bits[0: 33]
+  header_bits_left = header_bits[:16]
+  header_bits_right = header_bits[16:]
+  
+  secret_bits = msg_bits[32:]
+  print('secret_bits:', secret_bits, len(secret_bits))
+  
+  secret_bits_half_len = len(secret_bits) // 2
+  msg_left = header_bits_left + secret_bits[:secret_bits_half_len]
+  msg_right = header_bits_right + secret_bits[secret_bits_half_len:]
+  print('msg_left:', msg_left, len(msg_left))
+  print('msg_right:', msg_right, len(msg_right))
   
   idx_left = np.argwhere(embedded == peak - 2)
   idx_right = np.argwhere(embedded == peak + 2)
@@ -58,7 +67,6 @@ def embeded_data(img: Image.Image, msg_bits: str, peak: int) -> tuple[str, Image
   for i, bit in enumerate(msg_left):
     if bit == '1':
       x, y = idx_left[i]
-      print()
       embedded[x, y] += 1
   
   for i, bit in enumerate(msg_right):

@@ -5,7 +5,7 @@ from utils.histogram_embed import embeded_data
 import os
 import io
 import base64
-from utils.bit_text_switch import text_to_bits
+from utils.bit_text_switch import bits_to_text, text_to_bits
 from utils.histogram_decode import decode_data
 from utils.save_embed_record import save_embed_record
 from utils.find_record import find_record_by_image_data
@@ -46,7 +46,10 @@ def embed():
   original_img = Image.open(path).convert('L')
   print(original_img)
   
-  msg_bits = text_to_bits(secret_text)
+  msg_len = len(secret_text)
+  header_bits = format(msg_len, '032b')
+  
+  msg_bits = header_bits + text_to_bits(secret_text)
   
   peak, embeded_img, hist_path = embeded_data(
     img=original_img,
@@ -55,14 +58,7 @@ def embed():
   )
   print(hist_path)
   embeded_base64 = img_to_base64(embeded_img)
-  
-  save_embed_record(
-    image_data=embeded_base64,
-    secret_text_len=len(secret_text),
-    hist_path=hist_path,
-    json_path='static/data/data.json'
-  )
-  
+
   return render_template(
     'embed_result.html',
     peak=peak,
@@ -94,11 +90,8 @@ def decode():
     json_path='static/data/data.json'
   )
   
-  msg_len = record['secret_text_len'] * 8
-  
   decoded_img, secret_text, hist_path = decode_data(
     embedded_img,
-    msg_len=msg_len,
     peak=peak
   )
   
