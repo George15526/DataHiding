@@ -9,7 +9,9 @@
 ### 流程：
 * Step 1 -- clone此專案:<br>
   * 使用 Git:<br>
-    `git clone https://github.com/George15526/DataHiding.git`
+    ```
+    git clone https://github.com/George15526/DataHiding.git
+    ```
 
   * 使用Zip檔(點選紅色圓圈處):
     <img src="https://github.com/user-attachments/assets/2c381ee8-2d15-4a5a-bb26-2a4869e1ed3b" height="35%" >
