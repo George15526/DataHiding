@@ -30,3 +30,6 @@ Data Hiding program using by Histogram Shifting (no overhead information)<br>
 
   * 指定P值為：
   <img src="https://github.com/user-attachments/assets/8e5fe3e5-3d95-446a-af98-6007a326803a" height="40%" >
+
+
+> 若想玩玩看此專案，可看此篇[使用手冊](docs/USERGUIDE.md)
