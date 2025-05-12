@@ -13,7 +13,7 @@
     git clone https://github.com/George15526/DataHiding.git
     ```
 
-  * 使用Zip檔(點選紅色圓圈處):
+  * 使用Zip檔(點選紅色圓圈處)並將其解壓縮:
     <img src="https://github.com/user-attachments/assets/2c381ee8-2d15-4a5a-bb26-2a4869e1ed3b" height="35%" >
     
 * Step 2 -- 利用編譯器打開專案並在terminal中輸入以下指令:
